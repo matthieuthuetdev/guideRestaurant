@@ -1,10 +1,12 @@
 <?php
 if (isset($_POST["add"])) {
   $restoListe->addResto($_POST);
+  header("location: index.php");
 }
 ?>
 
 <h1>ajouter un restaurant :</h1>
+<fieldset>
 <form action="index.php" method="post">
   <div>
     <label for="nom">Nom</label>
@@ -16,7 +18,7 @@ if (isset($_POST["add"])) {
   </div>
   <div>
     <label for="prix">Prix</label>
-    <input type="number" name="prix" id="prix" />
+    <input type="number" name="prix" id="prix" min="0" step="0.01" />
   </div>
   <div>
     <label for="commentaire">Commentaire</label>
@@ -36,4 +38,5 @@ if (isset($_POST["add"])) {
   <div>
     <input type="submit" name="add" value="Ajouter" />
   </div>
+  </fieldset>
 </form>

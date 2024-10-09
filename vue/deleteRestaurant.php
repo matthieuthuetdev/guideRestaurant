@@ -1,2 +1,3 @@
 <?php
-$restoListe->deleteResto()
+$restoListe->deleteResto($_GET["id"]);
+header("location:index.php");
