@@ -7,24 +7,24 @@ if (isset($_POST["add"])) {
 
 <h1>ajouter un restaurant :</h1>
 <fieldset>
-<form action="index.php" method="post">
-  <div>
+<form action="" method="post">
+  <div class="inputinfo">
     <label for="nom">Nom</label>
     <input type="text" name="nom" id="nom" />
   </div>
-  <div>
+  <div class="inputinfo">
     <label for="adresse">Adresse</label>
     <input type="text" name="adresse" id="adresse" />
   </div>
-  <div>
+  <div class="inputinfo">
     <label for="prix">Prix</label>
     <input type="number" name="prix" id="prix" min="0" step="0.01" />
   </div>
-  <div>
+  <div class="inputinfo">
     <label for="commentaire">Commentaire</label>
     <textarea name="commentaire" id="commentaire"></textarea>
-  </div>
-  <div>
+  </div class="inputinfo">
+  <div class="inputinfo">
     <label for="note">note</label>
     <input
       type="number"
@@ -35,7 +35,7 @@ if (isset($_POST["add"])) {
     <label for="visite">Visite</label>
     <input type="date" name="visite" />
   </div>
-  <div>
+  <div class="inputinfo">
     <input type="submit" name="add" value="Ajouter" />
   </div>
   </fieldset>

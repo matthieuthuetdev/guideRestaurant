@@ -22,6 +22,7 @@ class Liste_resto
             $restaurantCourrant = $this->result[$i];
             $HTMLTable .= "<tr><td>$restaurantCourrant->nom</td><td>$restaurantCourrant->adresse</td><td>$restaurantCourrant->prix</td><td>$restaurantCourrant->commentaire</td><td>$restaurantCourrant->note</td><td>$restaurantCourrant->visite</td><td><a href='index.php?p=deleteRestaurant&id=$restaurantCourrant->id'>Supprimer</a></td></tr>";
         }
+        $HTMLTable .= "</tbody></table";
         return $HTMLTable;
     }
 

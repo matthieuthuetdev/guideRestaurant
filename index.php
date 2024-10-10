@@ -1,6 +1,7 @@
 <?php
-require "./model/Database.php";
-require "./model/Liste_resto.php";
+require_once "./vendor/autoload.php";
+require_once "./model/Database.php";
+require_once "./model/Liste_resto.php";
 $db = new Database();
 
 $dbConnection = $db->initDatabase();
