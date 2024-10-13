@@ -10,7 +10,7 @@ class Liste_resto
     }
     public function listerResto(): array
     {
-        $pdoStatement = $this->connection->query("SELECT * FROM restaurants", PDO::FETCH_OBJ);
+        $pdoStatement = $this->connection->query("SELECT * FROM restaurants", PDO::FETCH_ASSOC);
         $montab = $pdoStatement->fetchAll();
         $this->result = $montab;
         return $montab;
@@ -18,14 +18,31 @@ class Liste_resto
     public function displayHTMLTable()
     {
         $HTMLTable = "<table> <thead><th>Nom</th><th>Adresse</th><th>prix</th><th>Commentaire</th><th>Note</th><th>Visite</th><th>Supprimer</th></thead><tbody>";
-        for ($i = 0; $i < count($this->result); $i++) {
-            $restaurantCourrant = $this->result[$i];
-            $HTMLTable .= "<tr><td>$restaurantCourrant->nom</td><td>$restaurantCourrant->adresse</td><td>$restaurantCourrant->prix</td><td>$restaurantCourrant->commentaire</td><td>$restaurantCourrant->note</td><td>$restaurantCourrant->visite</td><td><a href='index.php?p=deleteRestaurant&id=$restaurantCourrant->id'>Supprimer</a></td></tr>";
+
+            for ($i = 0; $i < count($this->result); $i++) {
+                $restaurantCourrant = $this->result[$i];
+                $nom = $restaurantCourrant["nom"];
+                $adresse = $restaurantCourrant["adresse"];
+                $prix = $restaurantCourrant["prix"];
+                $commentaire = $restaurantCourrant["commentaire"];
+                $note = $restaurantCourrant["note"];
+                $visite = $restaurantCourrant["visite"];
+                $id = $this->result[0]["id"];
+    
+                $HTMLTable .= "<tr><td>$nom</td><td>$adresse</td><td>$prix</td><td>$commentaire</td><td>$note</td><td>$visite</td><td><a href='index.php?p=deleteRestaurant&id=$id'>Supprimer</a></td></tr>";
         }
         $HTMLTable .= "</tbody></table";
         return $HTMLTable;
     }
-
+    public function searchRestoId($_id)
+    {
+        $pdoStatement = $this->connection->prepare("SELECT * FROM restaurants WHERE id=:id");
+        $pdoStatement->bindParam(":id", $_id, PDO::PARAM_INT);
+        $pdoStatement->execute();
+        $montab = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+        $this->result = $montab;
+        return $montab;
+    }
     public function addResto($input)
     {
         $rq = $this->connection->prepare('INSERT INTO restaurants (nom, adresse, prix, commentaire, note, visite) VALUES (:nom, :adresse, :prix,:commentaire, :note, :visite)');
@@ -37,10 +54,11 @@ class Liste_resto
         $rq->bindParam(":visite", $input["visite"], PDO::PARAM_STR);
         $rq->execute();
     }
-    public function deleteResto($_id){
+    public function deleteResto($_id)
+    {
         $request = "DELETE FROM restaurants WHERE id = :id";
         $rq = $this->connection->prepare($request);
-        $rq->bindParam(":id", $_id,PDO::PARAM_INT);
+        $rq->bindParam(":id", $_id, PDO::PARAM_INT);
         $rq->execute();
     }
 }

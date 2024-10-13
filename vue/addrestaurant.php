@@ -5,12 +5,12 @@ if (isset($_POST["add"])) {
 }
 ?>
 
-<h1>ajouter un restaurant :</h1>
+<h1> Modifier le restaurant :</h1>
 <fieldset>
 <form action="" method="post">
   <div class="inputinfo">
     <label for="nom">Nom</label>
-    <input type="text" name="nom" id="nom" />
+    <input type="text" name="nom" id="nom"/>
   </div>
   <div class="inputinfo">
     <label for="adresse">Adresse</label>

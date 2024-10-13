@@ -1,2 +1,0 @@
-<?php
-$restoListe->updateResto()
