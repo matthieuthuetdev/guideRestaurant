@@ -6,8 +6,6 @@ $db = new Database();
 
 $dbConnection = $db->initDatabase();
 $restoListe = new Liste_resto($dbConnection);
-var_dump($restoListe->listerResto());
-// var_dump($restoListe->searchRestoId(2));
 
 if (isset($_GET["p"])) {
     $p = $_GET["p"];
