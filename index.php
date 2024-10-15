@@ -1,12 +1,9 @@
 <?php
-require_once "./vendor/autoload.php";
 require_once "./model/Database.php";
 require_once "./model/Liste_resto.php";
-$db = new Database();
 
-$dbConnection = $db->initDatabase();
+$dbConnection = Database::getInstance();
 $restoListe = new Liste_resto($dbConnection);
-
 if (isset($_GET["p"])) {
     $p = $_GET["p"];
 } else {

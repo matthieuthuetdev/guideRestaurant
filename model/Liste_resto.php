@@ -45,8 +45,8 @@ class Liste_resto
     }
     public function searchRestoNom($_nom)
     {
-        $pdoStatement = $this->connection->prepare("SELECT * FROM restaurants WHERE id=:id");
-        $pdoStatement->bindParam(":nom", $_nom, PDO::PARAM_INT);
+        $pdoStatement = $this->connection->prepare("SELECT * FROM restaurants WHERE nom=:nom");
+        $pdoStatement->bindParam(":nom", $_nom, PDO::PARAM_STR);
         $pdoStatement->execute();
         $montab = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
         $this->result = $montab;
@@ -69,6 +69,7 @@ class Liste_resto
         $request = "DELETE FROM restaurants WHERE id = :id";
         $rq = $this->connection->prepare($request);
         $rq->bindParam(":id", $_id, PDO::PARAM_INT);
+        $rq->execute();
     }
     public function updateResto($input)
     {
